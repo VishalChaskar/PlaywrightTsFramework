@@ -13,4 +13,8 @@ export class HomePage {
     async isHeaderVisible(){
         return this.page.isVisible('text=Practice Page');
     }
+    async getAllLegendTexts(): Promise<string[]> {
+    return this.page.locator('legend').allTextContents();
+  }
+
 }

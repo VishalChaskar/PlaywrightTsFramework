@@ -10,3 +10,11 @@ test('Verify homepage loads correctly', async ({ page }) => {
     //verify header is displayed
     expect(await homepage.isHeaderVisible()).toBeTruthy();
 });
+
+test('Verify all legend text on homepage', async({page})=>{
+    const homepage = new HomePage(page);
+    await homepage.goto();
+    const legends = await homepage.getAllLegendTexts();
+    console.log('Legend texts on homepage', legends);
+    expect(legends.length).toBeGreaterThan(0);
+});
