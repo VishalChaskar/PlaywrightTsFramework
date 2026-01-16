@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests (Docker)
 
 on:
   push:
@@ -12,16 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Build Docker image
+        run: docker build --build-arg PLAYWRIGHT_TAG=v1.57.0-noble -t pw-e2e .
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      - name: Run Playwright tests
-        run: npx playwright test tests/AutomationPractice.spec.ts
+      - name: Run tests in Docker
+        run: docker run --rm pw-e2e
