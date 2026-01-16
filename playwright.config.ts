@@ -5,7 +5,7 @@ export default defineConfig({
   reporter: [['html', { open: 'never' }]],
   retries: 0,
   timeout: 60000,
-  use: { headless: false,
+  use: { headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry'
