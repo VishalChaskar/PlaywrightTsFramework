@@ -2,10 +2,12 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  use: {
-    browserName: 'chromium',
-    headless: false,
-    screenshot: 'on',
+  reporter: [['html', { open: 'never' }]],
+  retries: 0,
+  timeout: 60000,
+  use: { headless: false,
+    screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-  },
+    trace: 'on-first-retry'
+   }
 });
