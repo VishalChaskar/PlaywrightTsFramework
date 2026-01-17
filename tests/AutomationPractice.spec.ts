@@ -23,3 +23,9 @@ test.describe('Automation Practice - Radio Button Example',() => {
       await expect(radio2).toBeChecked();
    })
 });
+
+test.describe('Suggession Class Example', () => {
+  test('suggestion input is visible and accepts input', async ({page}) =>{
+    await expect(page.getByText('Suggession Class Example',{ exact:true })).toBeVisible();
+  })
+})
