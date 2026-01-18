@@ -26,6 +26,14 @@ test.describe('Automation Practice - Radio Button Example',() => {
 
 test.describe('Suggession Class Example', () => {
   test('suggestion input is visible and accepts input', async ({page}) =>{
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/',{waitUntil: 'domcontentloaded'});
     await expect(page.getByText('Suggession Class Example',{ exact:true })).toBeVisible();
+    const input = page.locator('#autocomplete');
+    await input.fill('Ind');
+    const options = page.locator('.ui-menu-item div');
+    await expect(options.first()).toBeVisible();
+    await page.getByText('India',{exact:true}).click();
+    await expect(input).toHaveValue('India');
+    
   })
 })
