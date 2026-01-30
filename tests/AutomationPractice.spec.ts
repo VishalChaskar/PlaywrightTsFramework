@@ -37,3 +37,15 @@ test.describe('Suggession Class Example', () => {
     
   })
 })
+
+test.describe('Dropdown Example', () => {
+  test('dropdown is visible and has 3 options', async ({page}) =>{
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/',{waitUntil:'domcontentloaded'});
+    await expect(page.getByText('Dropdown Example',{ exact:true})).toBeVisible();
+    const dropdown = page.locator('#dropdown-class-example');
+    await dropdown.click();
+    const options = page.locator('#dropdown-class-example option');
+    const filteredOptions = options.filter({ hasText: /Option1|Option2|Option3/ });
+    await expect(filteredOptions).toHaveCount(3);
+  })
+})
