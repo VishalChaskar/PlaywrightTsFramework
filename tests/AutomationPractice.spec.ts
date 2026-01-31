@@ -49,3 +49,13 @@ test.describe('Dropdown Example', () => {
     await expect(filteredOptions).toHaveCount(3);
   })
 })
+
+test.describe('Checkbox Example', () => {
+  test('Checkbox Example is visible and has 3 checkboxes', async({page}) =>{
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/',{waitUntil: 'domcontentloaded'});
+    expect (page.getByText('Checkbox Example',{exact:true})).toBeVisible();
+    const alloptions = page.locator('#checkbox-example label');
+    const filteredOptions = alloptions.filter({hasText: /Option1|Option2|Option3/});
+    await expect(filteredOptions).toHaveCount(3);
+  })
+});
