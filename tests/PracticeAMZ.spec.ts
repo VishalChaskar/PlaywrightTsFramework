@@ -11,6 +11,7 @@ test.describe("Amazon page testing",()=>{
         await searchInput.fill('Apple Iphone 16');
         await page.getByRole('button', { name: 'Go',exact:true }).click();
         const results = page.locator('[data-cy="asin-faceout-container"]');
+        await expect(results.first()).toBeVisible();
         const count = await results.count();
         expect(count).toBeGreaterThan(0);
     })
