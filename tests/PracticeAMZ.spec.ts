@@ -15,4 +15,13 @@ test.describe("Amazon page testing",()=>{
         const count = await results.count();
         expect(count).toBeGreaterThan(0);
     })
+    test("Verify Todays deal", async ({page}) => {
+        const todayDealLink = page.getByRole('link', { name: "Today's Deals" });
+        await expect(todayDealLink).toBeVisible();
+        await todayDealLink.click();
+        const dealResults = page.locator('[data-cy="asin-faceout-container"]');
+        await expect(dealResults.first()).toBeVisible();
+        const count = await dealResults.count();
+        expect(count).toBeGreaterThan(0);   
+    })
 })
