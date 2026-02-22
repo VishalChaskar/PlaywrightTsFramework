@@ -16,7 +16,7 @@ test.describe("Amazon page testing",()=>{
         expect(count).toBeGreaterThan(0);
     })
     test("Verify Todays deal", async ({page}) => {
-        const todayDealLink = page.getByRole('link', { name: "Today's Deals" });
+        const todayDealLink = page.getByRole('link', { name: 'Today\'s Deals' ,exact:true});
         await expect(todayDealLink).toBeVisible();
         await todayDealLink.click();
         const dealResults = page.locator('[data-cy="asin-faceout-container"]');
